@@ -1,0 +1,25 @@
+{
+  "name": "CIEMS - Center for International Emergency Medical Services",
+  "short_name": "CIEMS",
+  "description": "Advancing emergency medical services globally through research, development, and strategic partnerships",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0066cc",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/CIEMS_Logo.png",
+      "sizes": "120x120",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "health",
+    "education",
+    "nonprofit"
+  ],
+  "lang": "en-US",
+  "dir": "ltr"
+}
