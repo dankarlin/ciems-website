@@ -68,13 +68,24 @@
     }
     </script>
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZJE7D7QE09"></script>
+    <!-- Google Analytics - Delayed Load -->
     <script>
+      // Delay GA loading to improve initial performance
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-ZJE7D7QE09');
+      
+      // Load GA after initial render
+      setTimeout(() => {
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZJE7D7QE09';
+        document.head.appendChild(gaScript);
+        
+        gaScript.onload = () => {
+          gtag('config', 'G-ZJE7D7QE09');
+        };
+      }, 2000);
     </script>
     
     <!-- Performance optimizations -->
@@ -86,15 +97,32 @@
     <link rel="manifest" href="/manifest.json" />
     
     <!-- Preload critical resources -->
+    <link rel="preload" href="/CIEMS_Logo.webp" as="image" type="image/webp" />
     <link rel="preload" href="/CIEMS_Logo.png" as="image" type="image/png" />
     
     <title>CIEMS - Center for International Emergency Medical Services | Global EMS Solutions</title>
-    <script type="module" crossorigin src="/assets/index-BvweLo98.js"></script>
+    <script type="module" crossorigin src="/assets/index-DBesl0ax.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/vendor-Csw2ODfV.js">
     <link rel="modulepreload" crossorigin href="/assets/bootstrap-RZhndJcd.js">
+    <link rel="modulepreload" crossorigin href="/assets/animations-CvscwD7f.js">
     <link rel="stylesheet" crossorigin href="/assets/index-CACPwze1.css">
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
